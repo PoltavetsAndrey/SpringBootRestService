@@ -32,12 +32,12 @@ public class AuthorDao {
     }
 
     public Optional<Author> getById(int id) throws SQLException {
-        Collection<Author> authors = new ArrayList<>();
+        //Collection<Author> authors = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
             ResultSet cursor = statement.executeQuery(String.format(
                     "SELECT * FROM author WHERE id = %d", id));
             if (cursor.next()) {
-                return Optional.of(authors.add(createAuthorFromCursorIfPossible(cursor)));
+                return Optional.of(createAuthorFromCursorIfPossible(cursor));
             } else {
                 return Optional.empty();
             }
@@ -65,6 +65,9 @@ public class AuthorDao {
     }
 
     public void update(Author author) throws SQLException {
+        if(author.id == 0) {
+            throw new IllegalArgumentException("Id is not set");
+        }
         String sql = "UPDATE author SET name = ?, birth_year = ?" +
                 "WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)){
@@ -73,12 +76,12 @@ public class AuthorDao {
             statement.setInt(3, author.id);
 
             statement.executeUpdate();
-                    String.format("SELECT FROM author" +
-                            "WHERE name LIKE '%%%s%%' ", text));
-            while (cursor.next()) {
+//                    String.format("SELECT FROM author" +
+//                            "WHERE name LIKE '%%%s%%' ", text));
+//            while   (cursor.next()) {
+//
+//            }
 
-            }
-            )
         }
     }
 
@@ -87,10 +90,21 @@ public class AuthorDao {
             throw new IllegalArgumentException("ID is: ", author.id);
         }
         final String sql = "INSERT INTO author (name, birth_year) VALUES (?,?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connection.prepareStatement(sql,
+                Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, author.name);
             statement.setInt(2, author.birthYear);
-            statement.executeUpdate();
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating author failed, no rows affected");
+            }
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()){
+                if (generatedKeys.next()) {
+                    author.id = generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating author failed, no ID obtained");
+                }
+            }
         }
 
     }
