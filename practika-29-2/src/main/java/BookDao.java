@@ -46,11 +46,11 @@ public class BookDao {
         }
     }
 
-    public Collection<Book> getBooksByAuthorId(int author.id) throws SQLException {
+    public Collection<Book> getBooksByAuthorId(int authorId) throws SQLException {
         Collection<Book> books = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(
                 "SELECT * FROM book WHERE author_id = ?")){
-            statement.setInt(1, author.id);
+            statement.setInt(1, authorId);
             ResultSet cursor = statement.executeQuery();
             while (cursor.next()) {
                 books.add(createBookFromCursorIfPossible(cursor));
@@ -61,9 +61,9 @@ public class BookDao {
 
     private Book createBookFromCursorIfPossible(ResultSet cursor) throws SQLException {
         Book book = new Book();
-        book.id = cursor.getInt(id);
-        book.title = cursor.getString(title);
-        book.authorId = cursor.getString(author_id);
+        book.id = cursor.getInt("id");
+        book.title = cursor.getString("title");
+        book.authorId = cursor.getInt("author_id");
         return book;
     }
 

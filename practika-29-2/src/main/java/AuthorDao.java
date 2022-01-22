@@ -13,7 +13,7 @@ public class AuthorDao {
 
     public void createTable() throws SQLException {
         Statement statement = connection.createStatement();
-        statement.executeUpdate("CREATE TABLE author (" +
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS author (" +
                 "id INTEGER PRIMARY KEY AVTOINCREMENT" +
                 "name VARCHAR(100)" +
                 "birth_year INTEGER" +
@@ -81,13 +81,12 @@ public class AuthorDao {
 //            while   (cursor.next()) {
 //
 //            }
-
         }
     }
 
     public void insert(Author author) throws SQLException {
         if (author.id != 0) {
-            throw new IllegalArgumentException("ID is: ", author.id);
+            throw new IllegalArgumentException("ID is: " + author.id);
         }
         final String sql = "INSERT INTO author (name, birth_year) VALUES (?,?)";
         try (PreparedStatement statement = connection.prepareStatement(sql,

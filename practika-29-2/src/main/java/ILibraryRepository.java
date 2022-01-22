@@ -11,7 +11,7 @@ public interface ILibraryRepository {
     void saveBook(Book book, Author author);
 
     /**
-     * Ищет все книги, имя автора включает заданный текст имени
+     * ищет все книги, имя автора включает заданный текст имени
      *
      * @param name Текст имени для частичного поиска
      * @return коллекция заданных книг

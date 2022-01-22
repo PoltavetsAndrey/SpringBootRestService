@@ -11,4 +11,13 @@ public class Author {
         this.name = name;
         this.birthYear = birthYear;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id = " + id +
+                ", name'" + name + '\'' +
+                ", birthyear = " + birthYear +
+                '}';
+    }
 }

@@ -54,6 +54,7 @@ public class SqlLibraryRepository implements ILibraryRepository {
 
     @Override
     public Collection<Book> findBookByAuthorName(String name) {
+// Поиск по имени автора без djoin
 //        try {
 //            Collection<Book> books = new ArrayList<>();
 //            Collection<Author> authors = authorDao.findByName(name);
@@ -65,6 +66,8 @@ public class SqlLibraryRepository implements ILibraryRepository {
 //        } catch (SQLException e) {
 //            throw new RuntimeException("Failed to save book", e);
 //        }
+
+// Поиск по имени автора с использованием djoin
         try {
             return bookDao.findBooksByAuthorName(name);
         } catch (SQLException e) {
