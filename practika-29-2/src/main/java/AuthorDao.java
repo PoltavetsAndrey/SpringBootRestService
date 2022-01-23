@@ -1,3 +1,5 @@
+import org.sqlite.SQLiteException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,8 +16,8 @@ public class AuthorDao {
     public void createTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS author (" +
-                "id INTEGER PRIMARY KEY AVTOINCREMENT" +
-                "name VARCHAR(100)" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name VARCHAR(100), " +
                 "birth_year INTEGER" +
                 ")");
     }

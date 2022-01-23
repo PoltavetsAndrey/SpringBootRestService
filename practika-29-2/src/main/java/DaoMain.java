@@ -26,7 +26,6 @@ public class DaoMain {
 
     private void doSqlTasks(Connection connection) {
         AuthorDao authorDao = new AuthorDao(connection);
-        //Author author1 = new Author();
         try {
             authorDao.createTable();
             Author author1 = new Author("Толкин", 1980);
@@ -40,8 +39,5 @@ public class DaoMain {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }
