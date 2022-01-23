@@ -15,6 +15,7 @@ public class LibraryMain {
     private void run() {
         try (Connection connection = DriverManager.getConnection(SQLITE_CONNECTION_STRING)){
 
+            doSqlTasks(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -12,9 +12,9 @@ public class BookDao {
 
     public void createTable() throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate("CREATE TABLE IF NOT EXIST (" +
-                    "id INTEGER PRIMARY KEY AVTOINCREMENT" +
-                    "title VARCHAR(100)" +
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS book ( " +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "title VARCHAR(100), " +
                     "author_id INTEGER" +
                     ")");
         }
