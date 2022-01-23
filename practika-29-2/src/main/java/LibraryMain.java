@@ -1,3 +1,5 @@
+import org.sqlite.SQLiteException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,9 +15,11 @@ public class LibraryMain {
     }
 
     private void run() {
-        try (Connection connection = DriverManager.getConnection(SQLITE_CONNECTION_STRING)){
+        try (Connection connection = DriverManager.getConnection(SQLITE_CONNECTION_STRING)) {
 
             doSqlTasks(connection);
+        } catch (SQLiteException e) {
+            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
