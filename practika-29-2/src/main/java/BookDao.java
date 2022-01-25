@@ -10,6 +10,7 @@ public class BookDao {
         this.connection = connection;
     }
 
+    // from LibraryMain.initializeLibrary();
     public void createTable() throws SQLException {
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS book ( " +
@@ -67,12 +68,14 @@ public class BookDao {
         return book;
     }
 
+    // from LibraryMain.doSqlTasks();
     public Collection<Book> findBooksByAuthorName(String text) throws SQLException {
         Collection<Book> books = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(
                 "SELECT book.* FROM book " +
                         "JOIN author ON book.author_id = author.id " +
                         "WHERE author.name LIKE ?")) {
+
             statement.setString(1,"%" + text + "%");
             ResultSet cursor = statement.executeQuery();
             while (cursor.next()) {

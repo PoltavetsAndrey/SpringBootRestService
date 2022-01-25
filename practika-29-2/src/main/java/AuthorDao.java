@@ -13,6 +13,8 @@ public class AuthorDao {
         this.connection = connection;
     }
 
+// from LibraryMain.initializeLibrary()
+    // from DaoMain.doSqlTasks()
     public void createTable() throws SQLException {
         Statement statement = connection.createStatement();
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS author (" +
@@ -22,11 +24,14 @@ public class AuthorDao {
                 ")");
     }
 
+    // from DaoMain.doSqlTasks()
     public Collection<Author> getAll() throws SQLException {
         Collection<Author> authors = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
             ResultSet cursor = statement.executeQuery("SELECT * FROM author");
+            System.out.println("gggggg" + cursor.getInt("id"));
             if (cursor.next()) {
+                //System.out.println("gggggggggg");
                 authors.add(createAuthorFromCursorIfPossible(cursor));
             }
         }
@@ -51,6 +56,7 @@ public class AuthorDao {
         try (Statement statement = connection.createStatement()) {
             ResultSet cursor = statement.executeQuery("SELECT * FROM author " +
                     "WHERE NAME LIKE '%%%s%%', text");
+
             if (cursor.next()) {
                 authors.add(createAuthorFromCursorIfPossible(cursor));
             }
@@ -86,6 +92,7 @@ public class AuthorDao {
         }
     }
 
+    // from DaoMain.doSqlTasks()
     public void insert(Author author) throws SQLException {
         if (author.id != 0) {
             throw new IllegalArgumentException("ID is: " + author.id);

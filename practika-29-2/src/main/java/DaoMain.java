@@ -30,10 +30,15 @@ public class DaoMain {
             authorDao.createTable();
             Author author1 = new Author("Толкин", 1980);
             Author author2 = new Author("Страуструп", 1950);
+            Author author3 = new Author("Страус", 1960);
+
             authorDao.insert(author1);
             System.out.println("author1: " + author1);
             authorDao.insert(author2);
             System.out.println("author2: " + author2);
+            authorDao.insert(author3);
+            System.out.println("author3: " + author3);
+
             Collection<Author> authors = authorDao.getAll();
             System.out.println("authors: " + authors);
         } catch (SQLException e) {
