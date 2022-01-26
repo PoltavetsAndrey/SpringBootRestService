@@ -39,10 +39,6 @@ public class DaoMain {
 
             bookDao.createTable();
 
-//            SqlLibraryRepository.saveBook(new Book("Властелин колец: 1"), author1);
-//            SqlLibraryRepository.saveBook(new Book("Властелин колец: 2"), author1);
-//            SqlLibraryRepository.saveBook(new Book("C++"), author2);
-
             Collection<Author> authors = authorDao.getAll();
             for (Author author : authors) {
                 System.out.println("author: " + author);

@@ -26,14 +26,14 @@ public class LibraryMain {
     private void doSqlTasks(Connection connection) throws SQLException {
         ILibraryRepository repository = initializeLibrary(connection);
 
-//        Author author1 = new Author("Толкин", 1980);
-//        Author author2 = new Author("Страуструп", 1950);
-//        repository.saveBook(new Book("Властелин колец: 1"), author1);
-//        repository.saveBook(new Book("Властелин колец: 2"), author1);
-//        repository.saveBook(new Book("C++"), author2);
+        Author author1 = new Author("Толкин", 1980);
+        Author author2 = new Author("Страуструп", 1950);
+        repository.saveBook(new Book("Властелин колец: 1"), author1);
+        repository.saveBook(new Book("Властелин колец: 2"), author1);
+        repository.saveBook(new Book("C++"), author2);
 
-        //Collection<Book> books = repository.findBookByAuthorName("и");
         Collection<Book> books = repository.findBookByAuthorName("и");
+
 
         System.out.println(books);
     }

@@ -6,6 +6,8 @@ public interface ILibraryRepository {
 
     Collection<Author> getAllAuthors();
 
+
+
     void saveAuthor(Author author);
 
     void saveBook(Book book, Author author);
