@@ -88,4 +88,22 @@ public class BookDao {
             return books;
         }
     }
+
+    public Collection<Book> getAll() throws SQLException {
+        Collection<Book> books = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            ResultSet cursor = statement.executeQuery("SELECT * FROM book");
+            while (cursor.next()) {
+                books.add(createBookFromCursorIfPossible(cursor));
+            }
+        }
+        return books;
+    }
+
+//    private Book createBookFromCursorIfPossible(ResultSet cursor) {
+//        Book book = new Book();
+//        book.authorId = cursor.getInt("authorId");
+//        book.title = cursor.getString("title");
+//        book.id = cursor.getInt("id");
+//    }
 }

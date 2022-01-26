@@ -6,11 +6,17 @@ public interface ILibraryRepository {
 
     Collection<Author> getAllAuthors();
 
+    Collection<Comment> getAllComment();
 
+    Collection<User> getAllUser();
 
     void saveAuthor(Author author);
 
     void saveBook(Book book, Author author);
+
+    void saveComment(Comment comment);
+
+    void saveUser(User user);
 
     /**
      * ищет все книги, имя автора включает заданный текст имени
@@ -20,4 +26,6 @@ public interface ILibraryRepository {
      */
 
     Collection<Book> findBookByAuthorName(String name);
+
+    Collection<Author> findAuthorByBookTitle(String name);
 }

@@ -1,20 +1,28 @@
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class SqlLibraryRepository implements ILibraryRepository {
 
     private final BookDao bookDao;
     private final AuthorDao authorDao;
+    private final CommentDao commentDao;
+    private final UserDao userDao;
 
-    public SqlLibraryRepository(BookDao bookDao, AuthorDao authorDao) {
+    public SqlLibraryRepository(BookDao bookDao, AuthorDao authorDao, CommentDao commentDao, UserDao userDao) {
         this.bookDao = bookDao;
         this.authorDao = authorDao;
+        this.commentDao = commentDao;
+        this.userDao = userDao;
     }
 
     @Override
     public Collection<Book> getAllBooks() {
-        throw new UnsupportedOperationException();
+        try {
+            return bookDao.getAll();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch book", e);
+        }
+        //throw new UnsupportedOperationException();
     }
 
     @Override
@@ -22,7 +30,26 @@ public class SqlLibraryRepository implements ILibraryRepository {
         try {
             return authorDao.getAll();
         } catch (SQLException e) {
-            throw new RuntimeException("Failed to fetch authors", e);
+            throw new RuntimeException("Failed to fetch author", e);
+        }
+    }
+
+    @Override
+    public Collection<Comment> getAllComment() {
+        try {
+            return commentDao.getAll();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch comment", e);
+        }
+
+    }
+
+    @Override
+    public Collection<User> getAllUser() {
+        try {
+            return userDao.getAll();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch user", e);
         }
     }
 
@@ -53,6 +80,16 @@ public class SqlLibraryRepository implements ILibraryRepository {
     }
 
     @Override
+    public void saveComment(Comment comment) {
+
+    }
+
+    @Override
+    public void saveUser(User user) {
+
+    }
+
+    @Override
     public Collection<Book> findBookByAuthorName(String name) {
 // Поиск по имени автора без djoin
 //        try {
@@ -73,5 +110,10 @@ public class SqlLibraryRepository implements ILibraryRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Failed to find books", e);
         }
+    }
+
+    @Override
+    public Collection<Author> findAuthorByBookTitle(String name) {
+        return null;
     }
 }
