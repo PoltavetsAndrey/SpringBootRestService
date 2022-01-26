@@ -17,7 +17,7 @@ public class AuthorDao {
     // from DaoMain.doSqlTasks()
     public void createTable() throws SQLException {
         Statement statement = connection.createStatement();
-        statement.executeUpdate("CREATE TABLE IF NOT EXISTS author (" +
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS authors (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name VARCHAR(100), " +
                 "birth_year INTEGER" +
@@ -26,25 +26,24 @@ public class AuthorDao {
 
     // from DaoMain.doSqlTasks()
     public Collection<Author> getAll() throws SQLException {
-        Collection<Author> authors = new ArrayList<>();
+        Collection<Author> collectionAuthors = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
-            ResultSet cursor = statement.executeQuery("SELECT * FROM author");
-            System.out.println("gggggg" + cursor.getInt("id"));
-            if (cursor.next()) {
-                //System.out.println("gggggggggg");
-                authors.add(createAuthorFromCursorIfPossible(cursor));
+            ResultSet cursor = statement.executeQuery("SELECT * FROM authors");
+            while (cursor.next()) {
+                collectionAuthors.add(createAuthorFromCursorIfPossible(cursor));
             }
         }
-        return authors;
+        return collectionAuthors;
     }
 
     public Optional<Author> getById(int id) throws SQLException {
         //Collection<Author> authors = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
             ResultSet cursor = statement.executeQuery(String.format(
-                    "SELECT * FROM author WHERE id = %d", id));
+                    "SELECT * FROM authors WHERE id = %d", id));
             if (cursor.next()) {
                 return Optional.of(createAuthorFromCursorIfPossible(cursor));
+
             } else {
                 return Optional.empty();
             }
@@ -54,7 +53,7 @@ public class AuthorDao {
     public Collection<Author> findByName() throws SQLException {
         Collection<Author> authors = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
-            ResultSet cursor = statement.executeQuery("SELECT * FROM author " +
+            ResultSet cursor = statement.executeQuery("SELECT * FROM authors " +
                     "WHERE NAME LIKE '%%%s%%', text");
 
             if (cursor.next()) {
@@ -76,7 +75,7 @@ public class AuthorDao {
         if(author.id == 0) {
             throw new IllegalArgumentException("Id is not set");
         }
-        String sql = "UPDATE author SET name = ?, birth_year = ?" +
+        String sql = "UPDATE authors SET name = ?, birth_year = ?" +
                 "WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, author.name);
@@ -84,7 +83,7 @@ public class AuthorDao {
             statement.setInt(3, author.id);
 
             statement.executeUpdate();
-//                    String.format("SELECT FROM author" +
+//                    String.format("SELECT FROM authors" +
 //                            "WHERE name LIKE '%%%s%%' ", text));
 //            while   (cursor.next()) {
 //
@@ -97,7 +96,7 @@ public class AuthorDao {
         if (author.id != 0) {
             throw new IllegalArgumentException("ID is: " + author.id);
         }
-        final String sql = "INSERT INTO author (name, birth_year) VALUES (?,?)";
+        final String sql = "INSERT INTO authors (name, birth_year) VALUES (?,?)";
         try (PreparedStatement statement = connection.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, author.name);

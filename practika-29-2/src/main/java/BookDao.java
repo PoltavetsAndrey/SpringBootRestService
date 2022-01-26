@@ -71,10 +71,14 @@ public class BookDao {
     // from LibraryMain.doSqlTasks();
     public Collection<Book> findBooksByAuthorName(String text) throws SQLException {
         Collection<Book> books = new ArrayList<>();
+//        try (PreparedStatement statement = connection.prepareStatement(
+//                "SELECT book.* FROM book " +
+//                        "JOIN authors ON book.author_id = authors.id " +
+//                        "WHERE authors.name LIKE ?")) {
         try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT book.* FROM book " +
-                        "JOIN author ON book.author_id = author.id " +
-                        "WHERE author.name LIKE ?")) {
+                        "SELECT * FROM book " +
+                                "JOIN authors ON book.author_id = authors.id " +
+                                "WHERE authors.name LIKE ?")) {
 
             statement.setString(1,"%" + text + "%");
             ResultSet cursor = statement.executeQuery();
