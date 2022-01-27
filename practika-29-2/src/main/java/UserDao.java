@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -28,5 +25,39 @@ public class UserDao {
         user.id = cursor.getInt("id");
         user.name = cursor.getString("name");
         return user;
+    }
+
+    public void insert(User user) throws SQLException {
+        if (user.id != 0) {
+            throw new IllegalArgumentException("ID is: " + user.id);
+        }
+        final String sql = "INSERT INTO users (name) VALUES (?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql,
+                Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, user.name);
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected");
+            }
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()){
+                if (generatedKeys.next()) {
+                    user.id = generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained");
+                }
+            }
+        }
+    }
+
+    public void update(User user) throws SQLException {
+        if(user.id == 0) {
+            throw new IllegalArgumentException("Id is not set");
+        }
+        String sql = "UPDATE users SET name = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, user.name);
+            statement.setInt(2, user.id);
+            statement.executeUpdate();
+        }
     }
 }

@@ -80,13 +80,33 @@ public class SqlLibraryRepository implements ILibraryRepository {
     }
 
     @Override
-    public void saveComment(Comment comment) {
-
+    public void saveComment(Comment comment, Book book, User user) {
+        try {
+            if (book.id == 0) {
+                bookDao.insert(book);
+            }
+            if (user.id == 0) {
+                userDao.insert(user);
+            }
+            comment.bookId = book.id;
+            comment.userId = user.id;
+            commentDao.insert(comment);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to save comment", e);
+        }
     }
 
     @Override
     public void saveUser(User user) {
-
+        try {
+            if (user.id == 0) {
+                userDao.insert(user);
+            } else {
+                userDao.update(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to save user", e);
+        }
     }
 
     @Override
@@ -113,7 +133,16 @@ public class SqlLibraryRepository implements ILibraryRepository {
     }
 
     @Override
-    public Collection<Author> findAuthorByBookTitle(String name) {
+    public Collection<Author> findAuthorByBookTitle(String title) {
+        try {
+            return authorDao.findByBookTitle(title);
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to find books", e);
+        }
+    }
+
+    @Override
+    public Collection<Comment> findCommentByBookTitle(String name) {
         return null;
     }
 }

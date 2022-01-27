@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,5 +28,29 @@ public class CommentDao {
         comment.bookId = cursor.getInt("bookId");
         comment.userId = cursor.getInt("userId");
         return comment;
+    }
+
+    public void insert(Comment comment) throws SQLException {
+        if (comment.id != 0) {
+            throw new IllegalArgumentException("ID is: " + comment.id);
+        }
+        final String sql = "INSERT INTO comments (textComment, bookId, userId) VALUES (?,?,?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql,
+                Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, comment.textComment);
+            statement.setInt(2, comment.bookId);
+            statement.setInt(3, comment.userId);
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Creating comment failed, no rows affected");
+            }
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()){
+                if (generatedKeys.next()) {
+                    comment.id = generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Creating comment failed, no ID obtained");
+                }
+            }
+        }
     }
 }

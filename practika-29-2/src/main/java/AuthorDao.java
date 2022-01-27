@@ -114,4 +114,19 @@ public class AuthorDao {
             }
         }
     }
+
+    public Collection<Author> findByBookTitle(String title) throws SQLException {
+        Collection<Author> authors = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(
+                        "SELECT * FROM authors" +
+                                "JOIN book ON authors.id = book.author_Id " +
+                                "WHERE book.title LIKE ?")) {
+            statement.setString(1,"%" + title + "%");
+            ResultSet cursor = statement.executeQuery();
+            while (cursor.next()) {
+                authors.add(createAuthorFromCursorIfPossible(cursor));
+            }
+            return authors;
+        }
+    }
 }

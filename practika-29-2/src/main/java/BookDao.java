@@ -71,10 +71,8 @@ public class BookDao {
     // from LibraryMain.doSqlTasks();
     public Collection<Book> findBooksByAuthorName(String text) throws SQLException {
         Collection<Book> books = new ArrayList<>();
-//        try (PreparedStatement statement = connection.prepareStatement(
-//                "SELECT book.* FROM book " +
-//                        "JOIN authors ON book.author_id = authors.id " +
-//                        "WHERE authors.name LIKE ?")) {
+// Выбрать всё из book, но взять из всех авторов тех которые написали книги
+// и их имя соответсвует следующему условию
         try (PreparedStatement statement = connection.prepareStatement(
                         "SELECT * FROM book " +
                                 "JOIN authors ON book.author_id = authors.id " +

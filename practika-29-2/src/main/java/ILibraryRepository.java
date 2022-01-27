@@ -14,7 +14,7 @@ public interface ILibraryRepository {
 
     void saveBook(Book book, Author author);
 
-    void saveComment(Comment comment);
+    void saveComment(Comment comment, Book book, User user);
 
     void saveUser(User user);
 
@@ -28,4 +28,7 @@ public interface ILibraryRepository {
     Collection<Book> findBookByAuthorName(String name);
 
     Collection<Author> findAuthorByBookTitle(String name);
+
+    Collection<Comment> findCommentByBookTitle(String name);
+
 }
