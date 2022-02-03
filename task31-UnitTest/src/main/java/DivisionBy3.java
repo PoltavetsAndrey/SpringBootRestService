@@ -10,7 +10,6 @@ public class DivisionBy3 {
     }
 
     public static boolean divisionBy3(String dividend) {
-
         int sum = 0;
         int private3 = 0; // Частное от деления на 3
         for (int i = 0; i < dividend.length(); i++) {
