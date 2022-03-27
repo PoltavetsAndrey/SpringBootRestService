@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="practika-29-2" target="11" />
+      <module name="practika-29-2.main" target="11" />
+      <module name="practika-29-2.test" target="11" />
+      <module name="task-29-SQLite.main" target="11" />
+      <module name="task-29-SQLite.test" target="11" />
+      <module name="task21.main" target="11" />
+      <module name="task21.test" target="11" />
+      <module name="task31-UnitTest.main" target="11" />
+      <module name="task31-UnitTest.test" target="11" />
+      <module name="untitled3.main" target="11" />
+      <module name="untitled3.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

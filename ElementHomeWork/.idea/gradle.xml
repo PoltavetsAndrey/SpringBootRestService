@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/retrofit" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/retrofit" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task-29-SQLite" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/task-29-SQLite" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task-30-JDBC-Repository" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/task-30-JDBC-Repository" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task20" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/task20" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task21" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/task21" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task22-ReadWrite" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/task22-ReadWrite" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task23-1" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/task23-1" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task24-Retrofit" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/task24-Retrofit" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task31-UnitTest" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/task31-UnitTest" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/untitled2" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/untitled2" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/untitled3" />
+        <option name="gradleJvm" value="openjdk-16" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/untitled3" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
